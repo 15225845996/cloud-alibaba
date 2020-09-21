@@ -6,6 +6,7 @@ import com.zs.api.IShopProductService;
 import com.zs.entry.ShopOrder;
 import com.zs.entry.ShopProduct;
 import com.zs.shoporder.client.ProductClient;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,5 +58,26 @@ public class OrderController {
     @RequestMapping("/order/message")
     public String message() {
         return "高并发下的问题测试";
+    }
+
+
+
+
+    @RequestMapping("/create/{name}")
+    @GlobalTransactional
+    public String create(@PathVariable("name") String name) {
+        ShopProduct product = productClient.create(name);
+
+        ShopOrder order = new ShopOrder();
+        order.setUid(1);
+        order.setUsername(name);
+        order.setPid(product.getPid());
+        order.setPname(product.getPname());
+        order.setPprice(product.getPprice());
+        order.setNumber(1);
+        orderService.save(order);
+
+        int i = 10/0;
+        return JSON.toJSONString(order);
     }
 }

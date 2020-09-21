@@ -3,6 +3,7 @@ package com.zs.shopproduct.controller;
 import com.alibaba.fastjson.JSON;
 import com.zs.api.IShopProductService;
 import com.zs.entry.ShopProduct;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,18 @@ public class ProductController {
     public ShopProduct product(@PathVariable("pid") Integer pid) {
         ShopProduct product = productService.getById(pid);
         log.info("查询到商品:" + JSON.toJSONString(product));
+        return product;
+    }
+
+
+
+    @GetMapping("/create/{name}")
+    @GlobalTransactional
+    public ShopProduct create(@PathVariable("name") String name) {
+        ShopProduct product = new ShopProduct();
+        product.setPname(name);
+        productService.save(product);
+        log.info("创建商品:" + JSON.toJSONString(product));
         return product;
     }
 }

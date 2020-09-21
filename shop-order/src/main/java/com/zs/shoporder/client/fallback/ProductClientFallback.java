@@ -19,4 +19,12 @@ public class ProductClientFallback implements ProductClient {
         shopProduct.setPid(pid*-1);
         return shopProduct;
     }
+
+    @Override
+    public ShopProduct create(String name) {
+        ShopProduct shopProduct = new ShopProduct();
+        shopProduct.setPid(-1);
+        shopProduct.setPname("创建异常");
+        return shopProduct;
+    }
 }

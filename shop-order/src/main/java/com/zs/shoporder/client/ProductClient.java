@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Date: 2020/9/1 12:11
  * @Description:
  */
-@FeignClient(name = "server-product",fallback = ProductClientFallback.class)
+@FeignClient(name = "service-product",fallback = ProductClientFallback.class)
 public interface ProductClient {
 
     @GetMapping(value = "/product/{pid}")
     ShopProduct findByPid(@PathVariable("pid") Integer pid);
+
+
+
+    @GetMapping(value = "/create/{name}")
+    ShopProduct create(@PathVariable("name") String name);
 }
