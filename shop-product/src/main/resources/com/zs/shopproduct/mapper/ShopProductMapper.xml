@@ -3,7 +3,7 @@
 <mapper namespace="com.zs.shopproduct.mapper.ShopProductMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.zs.entry.ShopProduct">
+    <resultMap id="BaseResultMap" type="com.zs.common.entry.product.ShopProduct">
         <id column="pid" property="pid" />
         <result column="pname" property="pname" />
         <result column="pprice" property="pprice" />

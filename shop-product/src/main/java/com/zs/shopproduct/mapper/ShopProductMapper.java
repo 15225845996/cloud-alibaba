@@ -1,7 +1,7 @@
 package com.zs.shopproduct.mapper;
 
-import com.zs.entry.ShopProduct;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zs.common.entry.product.ShopProduct;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zs
  * @since 2020-09-01
  */
-public interface ShopProductMapper extends BaseMapper<ShopProduct> {
+public interface ShopProductMapper extends JpaRepository<ShopProduct, Integer> {
 
 }

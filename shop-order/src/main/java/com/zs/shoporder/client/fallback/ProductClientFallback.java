@@ -1,6 +1,6 @@
 package com.zs.shoporder.client.fallback;
 
-import com.zs.entry.ShopProduct;
+import com.zs.common.entry.product.ShopProduct;
 import com.zs.shoporder.client.ProductClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,6 +18,11 @@ public class ProductClientFallback implements ProductClient {
         ShopProduct shopProduct = new ShopProduct();
         shopProduct.setPid(pid*-1);
         return shopProduct;
+    }
+
+    @Override
+    public boolean reduceInventory(Integer pid, Integer num) {
+        return false;
     }
 
     @Override
